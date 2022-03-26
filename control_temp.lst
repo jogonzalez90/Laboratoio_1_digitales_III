@@ -1,0 +1,441 @@
+CCS PCM C Compiler, Version 5.015, 5967               26-mar.-22 09:27
+
+               Filename:   D:\8_semestre\digitales_III\segundo_corte\cotrol_temp\control_temp.lst
+
+               ROM used:   271 words (3%)
+                           Largest free fragment is 2048
+               RAM used:   7 (2%) at main() level
+                           10 (3%) worst case
+               Stack used: 1 locations
+               Stack size: 8
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   01B
+0003:  NOP
+.................... #include <control_temp.h> 
+.................... #include <16F877A.h> 
+.................... //////////// Standard Header file for the PIC16F877A device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2013 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC16F877A 
+....................  
+.................... #list 
+....................  
+.................... #device ADC=16 
+....................  
+.................... #FUSES NOWDT                 	//No Watch Dog Timer 
+.................... #FUSES NOBROWNOUT            	//No brownout reset 
+.................... #FUSES NOLVP                 	//No low voltage prgming, B3(PIC16) or B5(PIC18) used for I/O 
+....................  
+.................... #use delay(crystal=4MHz) 
+0004:  MOVLW  24
+0005:  MOVWF  04
+0006:  BCF    03.7
+0007:  MOVF   00,W
+0008:  BTFSC  03.2
+0009:  GOTO   018
+000A:  MOVLW  01
+000B:  MOVWF  78
+000C:  CLRF   77
+000D:  DECFSZ 77,F
+000E:  GOTO   00D
+000F:  DECFSZ 78,F
+0010:  GOTO   00C
+0011:  MOVLW  4A
+0012:  MOVWF  77
+0013:  DECFSZ 77,F
+0014:  GOTO   013
+0015:  GOTO   016
+0016:  DECFSZ 00,F
+0017:  GOTO   00A
+0018:  BCF    0A.3
+0019:  BCF    0A.4
+001A:  GOTO   0CC (RETURN)
+....................  
+....................  
+....................  
+.................... void main() 
+001B:  MOVF   03,W
+001C:  ANDLW  1F
+001D:  MOVWF  03
+001E:  MOVLW  FF
+001F:  MOVWF  20
+0020:  BSF    03.5
+0021:  BSF    1F.0
+0022:  BSF    1F.1
+0023:  BSF    1F.2
+0024:  BCF    1F.3
+0025:  MOVLW  07
+0026:  MOVWF  1C
+0027:  BCF    03.7
+.................... { 
+....................    //CONFIGURACION GENERAL 
+....................    SETUP_ADC_PORTS(ALL_ANALOG);//CONFIGURAMOS TODO EL PUERTO COMO SALIDA ANALOGA 
+0028:  BCF    1F.0
+0029:  BCF    1F.1
+002A:  BCF    1F.2
+002B:  BCF    1F.3
+....................    SETUP_ADC(ADC_CLOCK_DIV_32);//CONFIGURAMOS VELOCIDAD DE CONVERSION 
+002C:  BCF    1F.6
+002D:  BCF    03.5
+002E:  BCF    1F.6
+002F:  BSF    1F.7
+0030:  BSF    03.5
+0031:  BCF    1F.7
+0032:  BCF    03.5
+0033:  BSF    1F.0
+....................     
+....................    #ASM 
+....................       BSF    3.5 
+0034:  BSF    03.5
+....................       BSF    0X1F.7 
+0035:  BSF    1F.7
+....................       BCF    3.5 
+0036:  BCF    03.5
+....................    #ENDASM 
+....................     
+....................    SET_ADC_CHANNEL(0);//CANAL A USAR PARA CONVERSION 
+0037:  MOVLW  00
+0038:  MOVWF  78
+0039:  MOVF   1F,W
+003A:  ANDLW  C7
+003B:  IORWF  78,W
+003C:  MOVWF  1F
+....................     
+....................    //CONFIGURAMOS PUERTOS 
+....................    SET_TRIS_B(0B00000001); 
+003D:  MOVLW  01
+003E:  BSF    03.5
+003F:  MOVWF  06
+....................    SET_TRIS_C(0); 
+0040:  MOVLW  00
+0041:  MOVWF  07
+0042:  BCF    03.5
+0043:  MOVWF  20
+....................    SET_TRIS_D(0); 
+0044:  BSF    03.5
+0045:  MOVWF  08
+....................     
+....................    //INICIALIZAMO SALIDAS A 0 
+....................    OUTPUT_LOW(PIN_B1); 
+0046:  BCF    06.1
+0047:  BCF    03.5
+0048:  BCF    06.1
+....................    OUTPUT_LOW(PIN_B2); 
+0049:  BSF    03.5
+004A:  BCF    06.2
+004B:  BCF    03.5
+004C:  BCF    06.2
+....................    OUTPUT_LOW(PIN_B3); 
+004D:  BSF    03.5
+004E:  BCF    06.3
+004F:  BCF    03.5
+0050:  BCF    06.3
+....................    OUTPUT_LOW(PIN_B4); 
+0051:  BSF    03.5
+0052:  BCF    06.4
+0053:  BCF    03.5
+0054:  BCF    06.4
+....................    OUTPUT_LOW(PIN_B5); 
+0055:  BSF    03.5
+0056:  BCF    06.5
+0057:  BCF    03.5
+0058:  BCF    06.5
+....................    OUTPUT_LOW(PIN_B6); 
+0059:  BSF    03.5
+005A:  BCF    06.6
+005B:  BCF    03.5
+005C:  BCF    06.6
+....................    OUTPUT_LOW(PIN_B7); 
+005D:  BSF    03.5
+005E:  BCF    06.7
+005F:  BCF    03.5
+0060:  BCF    06.7
+....................    OUTPUT_LOW(PIN_C0); 
+0061:  BCF    20.0
+0062:  MOVF   20,W
+0063:  BSF    03.5
+0064:  MOVWF  07
+0065:  BCF    03.5
+0066:  BCF    07.0
+....................    OUTPUT_LOW(PIN_C1); 
+0067:  BCF    20.1
+0068:  MOVF   20,W
+0069:  BSF    03.5
+006A:  MOVWF  07
+006B:  BCF    03.5
+006C:  BCF    07.1
+....................    OUTPUT_LOW(PIN_C2); 
+006D:  BCF    20.2
+006E:  MOVF   20,W
+006F:  BSF    03.5
+0070:  MOVWF  07
+0071:  BCF    03.5
+0072:  BCF    07.2
+....................    OUTPUT_LOW(PIN_C3); 
+0073:  BCF    20.3
+0074:  MOVF   20,W
+0075:  BSF    03.5
+0076:  MOVWF  07
+0077:  BCF    03.5
+0078:  BCF    07.3
+....................    OUTPUT_LOW(PIN_C4); 
+0079:  BCF    20.4
+007A:  MOVF   20,W
+007B:  BSF    03.5
+007C:  MOVWF  07
+007D:  BCF    03.5
+007E:  BCF    07.4
+....................    OUTPUT_LOW(PIN_C5); 
+007F:  BCF    20.5
+0080:  MOVF   20,W
+0081:  BSF    03.5
+0082:  MOVWF  07
+0083:  BCF    03.5
+0084:  BCF    07.5
+....................    OUTPUT_LOW(PIN_C6); 
+0085:  BCF    20.6
+0086:  MOVF   20,W
+0087:  BSF    03.5
+0088:  MOVWF  07
+0089:  BCF    03.5
+008A:  BCF    07.6
+....................    OUTPUT_LOW(PIN_C7); 
+008B:  BCF    20.7
+008C:  MOVF   20,W
+008D:  BSF    03.5
+008E:  MOVWF  07
+008F:  BCF    03.5
+0090:  BCF    07.7
+....................    OUTPUT_LOW(PIN_D0); 
+0091:  BSF    03.5
+0092:  BCF    08.0
+0093:  BCF    03.5
+0094:  BCF    08.0
+....................    OUTPUT_LOW(PIN_D1); 
+0095:  BSF    03.5
+0096:  BCF    08.1
+0097:  BCF    03.5
+0098:  BCF    08.1
+....................    OUTPUT_LOW(PIN_D2); 
+0099:  BSF    03.5
+009A:  BCF    08.2
+009B:  BCF    03.5
+009C:  BCF    08.2
+....................    OUTPUT_LOW(PIN_D3); 
+009D:  BSF    03.5
+009E:  BCF    08.3
+009F:  BCF    03.5
+00A0:  BCF    08.3
+....................    OUTPUT_LOW(PIN_D4); 
+00A1:  BSF    03.5
+00A2:  BCF    08.4
+00A3:  BCF    03.5
+00A4:  BCF    08.4
+....................    OUTPUT_LOW(PIN_D5); 
+00A5:  BSF    03.5
+00A6:  BCF    08.5
+00A7:  BCF    03.5
+00A8:  BCF    08.5
+....................    OUTPUT_LOW(PIN_D6); 
+00A9:  BSF    03.5
+00AA:  BCF    08.6
+00AB:  BCF    03.5
+00AC:  BCF    08.6
+....................    OUTPUT_LOW(PIN_D7); 
+00AD:  BSF    03.5
+00AE:  BCF    08.7
+00AF:  BCF    03.5
+00B0:  BCF    08.7
+....................     
+....................     
+....................    INT CONVERSIONH=0;//VARIABLE PARA TOMAR CONVERSION 
+....................    INT CONVERSIONL=0;//VARIABLE PARA TOMAR CONVERSION 
+....................    INT ESTADO=0; 
+00B1:  CLRF   21
+00B2:  CLRF   22
+00B3:  CLRF   23
+....................  
+....................    while(TRUE) 
+....................    { 
+....................        
+....................       SWITCH (ESTADO) 
+00B4:  MOVF   23,W
+00B5:  BTFSC  03.2
+00B6:  GOTO   0BB
+00B7:  XORLW  01
+00B8:  BTFSC  03.2
+00B9:  GOTO   0E6
+00BA:  GOTO   10D
+....................       { 
+....................          CASE 0: 
+....................          { 
+....................             IF(INPUT(PIN_B0)==1) 
+00BB:  BSF    03.5
+00BC:  BSF    06.0
+00BD:  BCF    03.5
+00BE:  BTFSS  06.0
+00BF:  GOTO   0DD
+....................             { 
+....................              //  CONVERSIONL=READ_ADC();//ENCENDEMOS MODULOS PARA INICIAR CONVERSION Y GUARDAMOS EN LA VARIABLE 
+....................                #ASM 
+....................                 
+....................               // BCF    0X3.5 
+....................                BSF    0X1F.2 
+00C0:  BSF    1F.2
+....................             ESPERAR: 
+....................                BTFSC 0X1F.2 
+00C1:  BTFSC  1F.2
+....................                GOTO   ESPERAR 
+00C2:  GOTO   0C1
+....................                //BCF    0X3.5 
+....................                MOVF   0X1E,W 
+00C3:  MOVF   1E,W
+....................                MOVWF  0X21 
+00C4:  MOVWF  21
+....................                BSF    03.5 
+00C5:  BSF    03.5
+....................                MOVF   0X1E,W 
+00C6:  MOVF   1E,W
+....................                BCF    03.5 
+00C7:  BCF    03.5
+....................                MOVWF  0X22 
+00C8:  MOVWF  22
+....................                 
+....................                #ENDASM 
+....................                 
+....................                 
+....................                DELAY_MS(1);//RETARO PARA LA CONVERSION 
+00C9:  MOVLW  01
+00CA:  MOVWF  24
+00CB:  GOTO   004
+....................                OUTPUT_C(CONVERSIONH);//SACAMOS POR EL PUERTO C LA CONVERSION ALTA 
+00CC:  MOVLW  00
+00CD:  MOVWF  20
+00CE:  BSF    03.5
+00CF:  CLRF   07
+00D0:  BCF    03.5
+00D1:  MOVF   21,W
+00D2:  MOVWF  07
+....................                 
+....................                #ASM 
+....................                   MOVLW  0X0 
+00D3:  MOVLW  00
+....................                   MOVWF  0X20 
+00D4:  MOVWF  20
+....................                #ENDASM 
+....................                 
+....................                OUTPUT_D(CONVERSIONL);//SACAMOS POR EL PUERTO D LA CONVERSION BAJA 
+00D5:  BSF    03.5
+00D6:  CLRF   08
+00D7:  BCF    03.5
+00D8:  MOVF   22,W
+00D9:  MOVWF  08
+....................                ESTADO=1; 
+00DA:  MOVLW  01
+00DB:  MOVWF  23
+....................             } 
+00DC:  GOTO   0E5
+....................             ELSE 
+....................             { 
+....................                OUTPUT_LOW(PIN_B1); 
+00DD:  BSF    03.5
+00DE:  BCF    06.1
+00DF:  BCF    03.5
+00E0:  BCF    06.1
+....................                OUTPUT_LOW(PIN_B2); 
+00E1:  BSF    03.5
+00E2:  BCF    06.2
+00E3:  BCF    03.5
+00E4:  BCF    06.2
+....................             } 
+....................          } 
+....................             BREAK; 
+00E5:  GOTO   10D
+....................              
+....................             CASE 1: 
+....................             { 
+....................                IF(CONVERSIONL>0B10000000) 
+00E6:  MOVF   22,W
+00E7:  SUBLW  80
+00E8:  BTFSC  03.0
+00E9:  GOTO   0F3
+....................                { 
+....................                   OUTPUT_LOW(PIN_B1); 
+00EA:  BSF    03.5
+00EB:  BCF    06.1
+00EC:  BCF    03.5
+00ED:  BCF    06.1
+....................                   OUTPUT_HIGH(PIN_B2); 
+00EE:  BSF    03.5
+00EF:  BCF    06.2
+00F0:  BCF    03.5
+00F1:  BSF    06.2
+....................                } 
+00F2:  GOTO   10C
+....................                ELSE 
+....................                { 
+....................                   IF(CONVERSIONL>0B00010000) 
+00F3:  MOVF   22,W
+00F4:  SUBLW  10
+00F5:  BTFSC  03.0
+00F6:  GOTO   100
+....................                   { 
+....................                      OUTPUT_HIGH(PIN_B1); 
+00F7:  BSF    03.5
+00F8:  BCF    06.1
+00F9:  BCF    03.5
+00FA:  BSF    06.1
+....................                      OUTPUT_LOW(PIN_B2); 
+00FB:  BSF    03.5
+00FC:  BCF    06.2
+00FD:  BCF    03.5
+00FE:  BCF    06.2
+....................                      
+....................                   } 
+00FF:  GOTO   10C
+....................                    ELSE 
+....................                    { 
+....................                       IF(CONVERSIONL<0B00010000) 
+0100:  MOVF   22,W
+0101:  SUBLW  0F
+0102:  BTFSS  03.0
+0103:  GOTO   10C
+....................                         { 
+....................                            OUTPUT_LOW(PIN_B1); 
+0104:  BSF    03.5
+0105:  BCF    06.1
+0106:  BCF    03.5
+0107:  BCF    06.1
+....................                            OUTPUT_LOW(PIN_B2); 
+0108:  BSF    03.5
+0109:  BCF    06.2
+010A:  BCF    03.5
+010B:  BCF    06.2
+....................                         } 
+....................                    } 
+....................                } 
+....................                 
+....................                ESTADO=0; 
+010C:  CLRF   23
+....................             } 
+....................             BREAK; 
+....................          } 
+010D:  GOTO   0B4
+....................    } 
+....................    } 
+....................  
+010E:  SLEEP
+....................  
+
+Configuration Fuses:
+   Word  1: 3F31   XT NOWDT PUT NOBROWNOUT NOLVP NOCPD NOWRT NODEBUG NOPROTECT

@@ -1,0 +1,27 @@
+[PROJECT]
+Target=control_temp.hex
+Processor_Text=PIC16F877A
+CCSVerions=5.015
+Compiler=PCM
+CCSVersion=5.015
+[Target Data]
+FileList=control_temp.c
+[Directories]
+Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\;C:\Program Files (x86)\PICC\Drivers\C:\Program Files (x86)\PICC\Devices\
+[D:\8_semestre\digitales_III\segundo_corte\cotrol_de_temperatura\control_temp]
+Type=4
+[mru-list]
+1=control_temp.c
+[Opened Files]
+1=control_temp.c
+2=control_temp.h
+3=C:\Program Files (x86)\PICC\Devices\16F877A.h
+4=control_temp.lst
+5=..\..\..\..\Users\Asus\Desktop\contrtol_temp\control_temp.hex
+6=..\..\..\..\Users\Asus\Desktop\contrtol_temp\control_temp.c
+7=
+[control_temp.c]
+Type=4
+[Units]
+Count=1
+1=control_temp (main)
