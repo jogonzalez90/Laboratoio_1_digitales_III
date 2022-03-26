@@ -1,4 +1,4 @@
-# Laboratoio_1_digitales_III
+# Laboratorio_1_digitales_III
 Control de temperatura con microcontrolador PIC 18F877A.
 
 # Archivos
