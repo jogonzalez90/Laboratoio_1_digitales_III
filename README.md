@@ -12,6 +12,9 @@ Control de temperatura con microcontrolador PIC 18F877A.
 # Laboratorio II
 ![Image text](https://github.com/jogonzalez90/Laboratoio_1_digitales_III/blob/main/parcial_dos.png)
 
+# Laboratorio III
+![Image text](https://github.com/jogonzalez90/Laboratoio_1_digitales_III/blob/main/mezclador_1.png)
+
 # Software de programacion
 Pic C Compiler.
 
